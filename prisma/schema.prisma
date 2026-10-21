@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Profile {
+  id          String        @id @default(cuid())
+  name        String
+  description String
+  links       ProfileLink[]
+  skills      Skill[]
+  experience  Experience[]
+  projects    Project[]
+}
+
+model ProfileLink {
+  id        String  @id @default(cuid())
+  label     String
+  url       String
+  sortOrder Int     @default(0)
+  profileId String
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+}
+
+model Skill {
+  id        String  @id @default(cuid())
+  name      String
+  category  String?
+  sortOrder Int     @default(0)
+  profileId String
+  profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+}
+
+model Experience {
+  id           String        @id @default(cuid())
+  company      String
+  position     String
+  startDate    DateTime
+  endDate      DateTime?
+  sortOrder    Int           @default(0)
+  profileId    String
+  profile      Profile       @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  achievements Achievement[]
+
+  @@index([profileId])
+}
+
+model Achievement {
+  id           String     @id @default(cuid())
+  description  String
+  sortOrder    Int        @default(0)
+  experienceId String
+  experience   Experience @relation(fields: [experienceId], references: [id], onDelete: Cascade)
+
+  @@index([experienceId])
+}
+
+model Project {
+  id          String  @id @default(cuid())
+  name        String
+  url         String
+  description String?
+  sortOrder   Int     @default(0)
+  profileId   String
+  profile     Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+  @@index([profileId])
+}
