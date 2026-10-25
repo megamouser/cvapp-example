@@ -294,10 +294,6 @@ export type ProfileScalarRelationFilter = {
   isNot?: Prisma.ProfileWhereInput
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
 export type ProfileCreateNestedOneWithoutLinksInput = {
   create?: Prisma.XOR<Prisma.ProfileCreateWithoutLinksInput, Prisma.ProfileUncheckedCreateWithoutLinksInput>
   connectOrCreate?: Prisma.ProfileCreateOrConnectWithoutLinksInput

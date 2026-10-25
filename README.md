@@ -1,114 +1,159 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# cvapp
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Цифровая визитка разработчика с главной страницей, регистрацией пользователей и GraphQL API. Профиль, навыки, опыт и проекты загружаются из PostgreSQL.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Технологии
 
-## Description
+- TypeScript, Node.js и NestJS
+- GraphQL и Apollo Sandbox
+- Prisma 7 и PostgreSQL
+- Docker и Docker Compose
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Запуск с нуля
 
-## Project setup
+Требуется Docker Desktop.
 
 ```bash
-$ npm install
+docker compose up --build
 ```
 
-## Compile and run the project
+Compose поднимает PostgreSQL, ждёт его готовности, применяет Prisma-миграции, запускает API и заполняет пустую базу данными профиля.
+
+Apollo Sandbox доступен по адресу [http://localhost:4002/graphql](http://localhost:4002/graphql).
+
+- Главная: [http://localhost:4002](http://localhost:4002).
+- Регистрация: [http://localhost:4002/register](http://localhost:4002/register).
+- Вход: [http://localhost:4002/login](http://localhost:4002/login).
+- Личный кабинет: [http://localhost:4002/account](http://localhost:4002/account) (требуется вход).
+
+Обновление существующего проекта той же командой применяет новую миграцию таблицы пользователей без удаления данных. Сборка копирует HTML, CSS и JavaScript из `src/public` в `dist/public`; интерфейс обслуживается самим NestJS.
+
+## Регистрация пользователей
+
+`POST /api/auth/register` принимает JSON с `name`, `email` и `password`. Имя — 2–80 символов, пароль — 12–128 символов. Email нормализуется в нижний регистр и защищён уникальным ограничением PostgreSQL. Повторный email возвращает HTTP 409; некорректные данные — HTTP 400.
+
+Пароль сохраняется только как salted scrypt-хеш; ни пароль, ни хеш не возвращаются клиенту. Есть ограничение 10 попыток за 15 минут на IP и ограничение параллельного хеширования. Лимиты находятся в памяти одного процесса и сбрасываются при его перезапуске; при нескольких репликах нужен общий limiter. IP берётся из соединения, без доверия произвольному `X-Forwarded-For`; за reverse proxy лимит может быть общим для посетителей до корректной настройки доверенных прокси.
+
+Регистрация создаёт аккаунт и показывает подтверждение со ссылкой на вход. Подтверждение email и восстановление пароля пока не реализованы.
+
+## Аутентификация
+
+- `POST /api/auth/login` — JSON с `email` и `password`; при успехе HTTP 200, публичные поля пользователя и cookie сессии.
+- `GET /api/auth/me` — текущий пользователь; без действительной сессии HTTP 401.
+- `POST /api/auth/logout` — запрос с `Content-Type: application/json` и телом `{}`; отзывает текущую сессию и удаляет cookie, HTTP 204.
+- `/account` — защищённая страница; без сессии перенаправляет на `/login`. На главной после входа появляется ссылка на кабинет.
+
+Пароли проверяются через scrypt с константным сравнением хешей. Ошибка входа одинакова для неизвестного email и неверного пароля. Вход ограничен по IP и email: 10 попыток за 15 минут, счётчики находятся в памяти процесса. Не более двух запросов входа одновременно выполняют проверку пароля.
+
+Сессия действует 7 дней. Случайный 256-битный токен передаётся только в HttpOnly-cookie `cvapp_session` с `SameSite=Lax` и `Path=/`; в PostgreSQL хранится только SHA-256 токена, а в localStorage токены не записываются. Новый вход заменяет сессию из переданной cookie, другие устройства сохраняют собственные сессии. Выход отзывает текущую сессию в БД; истёкшие сессии больше не дают доступа и очищаются при последующих успешных входах. Для запросов аутентификации отключено кеширование.
+
+Изменяющие состояние auth-запросы принимают только JSON и отклоняют чужой `Origin`/`Sec-Fetch-Site: cross-site`. CORS-доступ посторонним сайтам не включён.
+
+### Публичный HTTPS-сервер
+
+Перед использованием реальных паролей настройте HTTPS. В переменных окружения API задайте:
+
+```dotenv
+APP_ORIGIN=https://your-domain.example
+SESSION_COOKIE_SECURE=true
+```
+
+`APP_ORIGIN` — полный публичный origin без завершающего `/`, путей и параметров. Он нужен для корректной проверки Origin за reverse proxy. `SESSION_COOKIE_SECURE=true` запрещает отправлять cookie по HTTP, в том числе если TLS завершается на прокси. В локальном HTTP-окружении эту переменную оставляют false; при прямом HTTPS secure-флаг включается также по `request.secure`. Compose передаёт обе переменные из окружения/.env. В отдельных deploy-compose файлах их нужно добавить в environment сервиса API самостоятельно.
+
+Для нескольких реплик необходим общий лимитер запросов. Сессии уже общие, поскольку хранятся в PostgreSQL. Перезапуск API не завершает действительные сессии.
+
+`GET /api/profile` используется главной страницей. Старый GraphQL endpoint `/graphql` сохранён.
+
+## Проверки
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm run build
+npm test -- --runInBand
+npm run test:registration
+npm run test:auth
 ```
 
-## Run tests
+Интеграционные тесты требуют запущенной PostgreSQL, применённых миграций и локального `DATABASE_URL`. Они проверяют HTTP-маршруты, создание пользователя, одновременные дубли, GraphQL, вход, cookie, ротацию/выход/истечение сессий и защиту от cross-site запросов. Собственную запись пользователя и её сессии удаляют после теста:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run test:e2e -- --runInBand
 ```
 
-## Deployment
+Пример запроса:
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+```graphql
+query {
+  profile {
+    name
+    description
+    links {
+      label
+      url
+    }
+    skills {
+      name
+    }
+    experience {
+      company
+      position
+      period
+      achievements
+    }
+    projects {
+      name
+      url
+    }
+  }
+}
+```
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Локальная разработка
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+docker compose up -d postgres
+npx prisma generate
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+Для локального запуска базы используется порт `5434`; строка подключения находится в `.env`. После изменения `prisma/schema.prisma` создайте миграцию:
 
-## Observability
+```bash
+npx prisma migrate dev --name describe-change
+```
 
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
+## Данные профиля
 
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
+Измените [src/database/profile.seed-data.ts](src/database/profile.seed-data.ts). Чтобы применить новые seed-данные на чистой базе, выполните:
 
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
+```bash
+docker compose down -v
+docker compose up --build
+```
 
-## Resources
+`down -v` удаляет только volume базы этого проекта.
 
-Check out a few resources that may come in handy when working with NestJS:
+## Структура
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observer](https://observer.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- `profile` — GraphQL resolver, бизнес-логика и доступ к данным.
+- `prisma` — подключение Prisma Client к PostgreSQL через `@prisma/adapter-pg`.
+- `database` — начальные данные и заполнение пустой базы при запуске.
+- `prisma/migrations` — версия схемы базы данных.
 
-## Support
+### Языки интерфейса
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+На всех страницах приложения доступен переключатель RU / EN. Язык сохраняется
+в браузере и передаётся в ссылках через `?lang=ru` или `?lang=en`.
+Переключение языка перезагружает страницу. Переведены интерфейс, FAQ, исходные
+данные портфолио и сообщения форм; пользовательские имена и email не переводятся.
+Словарь английских переводов: `src/public/assets/translations.js`.
+Проверка выбора языка: `node --test test/i18n.test.mjs`.
 
-## Stay in touch
+### Навигация и оформление
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Разделы сайта расположены в верхней навигации. На узких экранах элементы
+шапки переносятся по строкам; язык и тема остаются доступны без открытия меню.
+Стили собраны в `src/public/assets/style.css`: токены тем, общие компоненты и
+адаптивные правила. SVG-иконки навигации включены в HTML без внешних зависимостей.
+Подробности демонстрационного проекта находятся на странице `/projects`;
+структура REST и GraphQL при обновлении дизайна не менялась.
+План и результаты: `DESIGN-AND-CONTENT-PLAN.ru.md`.

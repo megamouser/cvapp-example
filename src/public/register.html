@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Создайте аккаунт в cvapp." />
+    <title>Создать аккаунт · cvapp</title>
+    <link rel="icon" href="/assets/favicon.svg?v=5" type="image/svg+xml" />
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/style.css" />
+    <script src="/assets/translations.js" defer></script>
+    <script src="/assets/i18n.js" defer></script>
+    <script src="/assets/disclosures.js" defer></script>
+    <script src="/assets/register.js" defer></script>
+  </head>
+  <body class="registration-page">
+    <a class="skip-link" href="#main">К содержимому</a>
+    <header class="header">
+      <div class="container header-inner">
+        <a class="brand" href="/" aria-label="cvapp — главная"
+          ><span class="brand-mark" aria-hidden="true"></span>cvapp<span
+            class="brand-dot"
+            >.</span
+          ></a
+        >
+        <div class="nav-actions">
+          <a class="text-link" href="/login" data-login-link>Войти</a
+          ><a
+            class="button button-small button-dark"
+            href="/register"
+            data-register-link
+            >Создать аккаунт</a
+          >
+        </div>
+        <nav class="nav" aria-label="Главное меню">
+          <a href="/"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m3 10 9-7 9 7v11h-6v-7H9v7H3Z" /></svg
+            ><span>Главная</span></a
+          ><a href="/about"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="7" r="4" />
+              <path d="M4 21v-2a8 8 0 0 1 16 0v2" /></svg
+            ><span>Обо мне</span></a
+          ><a href="/experience"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="7" width="18" height="14" rx="2" />
+              <path d="M8 7V3h8v4M3 12h18M10 12v3h4v-3" /></svg
+            ><span>Опыт</span></a
+          ><a href="/projects"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18" /></svg
+            ><span>Проекты</span></a
+          ><a href="/faq"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M9 8a3 3 0 0 1 6 0c0 2-3 2-3 5m0 4h.01" /></svg
+            ><span>FAQ</span></a
+          ><a href="/pages"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"
+              /></svg
+            ><span>Все страницы</span></a
+          >
+          <a
+            class="text-link"
+            href="/graphql"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GraphQL API ↗</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <nav class="breadcrumbs container" aria-label="Хлебные крошки">
+      <ol>
+        <li><a href="/">Главная</a></li>
+        <li><span aria-current="page">Регистрация</span></li>
+      </ol>
+    </nav>
+    <main id="main" class="register-layout container">
+      <section class="register-story">
+        <span class="eyebrow muted">НОВОЕ ЗНАКОМСТВО</span>
+        <h1>Регистрация в cvapp</h1>
+        <p>
+          Проверьте регистрацию и личный кабинет cvapp.<br />Без сложных
+          настроек и лишних полей.
+        </p>
+      </section>
+      <section class="register-panel" aria-labelledby="register-title">
+        <div id="form-content">
+          <span class="form-step">01 — СОЗДАНИЕ АККАУНТА</span>
+          <h2 id="register-title">
+            Добро пожаловать<span class="accent">.</span>
+          </h2>
+          <p class="form-description">
+            Аккаунт открывает личный кабинет с именем, email и датой
+            регистрации.
+          </p>
+          <form id="register-form" novalidate>
+            <div class="field">
+              <label for="name">Ваше имя</label
+              ><input
+                id="name"
+                name="name"
+                autocomplete="name"
+                placeholder="Как к вам обращаться?"
+                minlength="2"
+                maxlength="80"
+                required
+                aria-describedby="name-error"
+              /><span class="field-error" id="name-error"></span>
+            </div>
+            <div class="field">
+              <label for="email">Email</label
+              ><input
+                id="email"
+                name="email"
+                type="email"
+                inputmode="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                maxlength="254"
+                required
+                aria-describedby="email-error"
+              /><span class="field-error" id="email-error"></span>
+            </div>
+            <div class="field">
+              <label for="password">Пароль</label>
+              <div class="password-wrap">
+                <input
+                  id="password"
+                  name="password"
+                  type="password"
+                  autocomplete="new-password"
+                  placeholder="Придумайте надёжный пароль"
+                  minlength="12"
+                  maxlength="128"
+                  required
+                  aria-describedby="password-hint password-error"
+                /><button
+                  type="button"
+                  class="toggle-password"
+                  id="toggle-password"
+                  aria-label="Показать пароль"
+                  aria-pressed="false"
+                >
+                  Показать
+                </button>
+              </div>
+              <div class="password-progress" aria-hidden="true">
+                <i></i><i></i><i></i><i></i>
+              </div>
+              <small class="field-hint" id="password-hint"
+                >От 12 до 128 символов. Можно использовать парольную
+                фразу.</small
+              ><span class="field-error" id="password-error"></span>
+            </div>
+            <div class="field">
+              <label for="password-confirm">Повторите пароль</label
+              ><input
+                id="password-confirm"
+                name="passwordConfirm"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Ещё раз, чтобы не ошибиться"
+                minlength="12"
+                maxlength="128"
+                required
+                aria-describedby="confirm-error"
+              /><span class="field-error" id="confirm-error"></span>
+            </div>
+            <div id="form-error" class="form-error" role="alert" hidden></div>
+            <button
+              type="submit"
+              class="button button-coral submit-button"
+              id="submit-button"
+            >
+              <span>Создать аккаунт</span><span aria-hidden="true">↗</span>
+            </button>
+            <p class="form-footnote">
+              <svg
+                aria-hidden="true"
+                width="14"
+                height="16"
+                viewBox="0 0 14 16"
+                fill="none"
+              >
+                <rect
+                  x="1.5"
+                  y="6.5"
+                  width="11"
+                  height="8"
+                  rx="2"
+                  stroke="currentColor"
+                />
+                <path d="M4 6V4a3 3 0 016 0v2" stroke="currentColor" /></svg
+              >Ваш пароль хранится только в виде защищённого хеша.
+            </p>
+          </form>
+          <p class="auth-switch">
+            Уже есть аккаунт? <a href="/login">Войти →</a>
+          </p>
+        </div>
+        <div
+          id="success-content"
+          class="success-content"
+          role="status"
+          hidden
+          tabindex="-1"
+        >
+          <span class="success-mark" aria-hidden="true">✓</span
+          ><span class="form-step">ГОТОВО — ВЫ С НАМИ</span>
+          <h2>
+            Приятно познакомиться, <span id="success-name"></span
+            ><span class="accent">.</span>
+          </h2>
+          <p>
+            Аккаунт для <strong id="success-email"></strong> успешно создан.
+          </p>
+          <a class="button button-dark" href="/login?registered=1"
+            >Войти в аккаунт <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </section>
+    </main>
+    <footer class="footer container">
+      <a class="brand footer-brand" href="/"
+        >cvapp<span class="brand-dot">.</span></a
+      >
+      <p>Небольшой шаг. Хорошее начало.</p>
+      <a
+        class="text-link"
+        href="/graphql"
+        target="_blank"
+        rel="noopener noreferrer"
+        >GraphQL API ↗</a
+      >
+      <a class="text-link" href="/pages">Все страницы</a>
+    </footer>
+  </body>
+</html>

@@ -23,6 +23,8 @@ services:
       DATABASE_URL: postgresql://cvapp:cvapp@postgres:5432/cvapp?schema=public
       PORT: 3000
       NODE_ENV: production
+      SESSION_COOKIE_SECURE: ${SESSION_COOKIE_SECURE:-false}
+      APP_ORIGIN: ${APP_ORIGIN:-}
     depends_on:
       postgres:
         condition: service_healthy

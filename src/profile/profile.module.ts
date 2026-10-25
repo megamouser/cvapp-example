@@ -4,12 +4,12 @@ import { ProfileRepository } from './profile.repository.js';
 import { ProfileService } from './profile.service.js';
 
 @Module({
-    providers: [
-      ProfileResolver,
-      ExperienceResolver,
-      ProfileService,
-      ProfileRepository,
-    ],
+  exports: [ProfileService],
+  providers: [
+    ProfileResolver,
+    ExperienceResolver,
+    ProfileService,
+    ProfileRepository,
+  ],
 })
-
 export class ProfileModule {}

@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Артём Юрьев — fullstack-разработчик. Опыт, технологии и проекты в одном месте."
+    />
+    <title>Проекты · cvapp</title>
+    <link rel="icon" href="/assets/favicon.svg?v=5" type="image/svg+xml" />
+    <script src="/assets/theme.js"></script>
+    <link rel="stylesheet" href="/assets/style.css" />
+    <script src="/assets/translations.js" defer></script>
+    <script src="/assets/i18n.js" defer></script>
+    <script src="/assets/disclosures.js" defer></script>
+
+    <script src="/assets/session.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">К содержимому</a>
+    <header class="header">
+      <div class="container header-inner">
+        <a class="brand" href="/" aria-label="cvapp — главная"
+          ><span class="brand-mark" aria-hidden="true"></span>cvapp<span
+            class="brand-dot"
+            >.</span
+          ></a
+        >
+        <div class="nav-actions">
+          <a class="text-link" href="/login" data-login-link>Войти</a
+          ><a
+            class="button button-small button-dark"
+            href="/register"
+            data-register-link
+            >Создать аккаунт</a
+          >
+        </div>
+        <nav class="nav" aria-label="Главное меню">
+          <a href="/"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m3 10 9-7 9 7v11h-6v-7H9v7H3Z" /></svg
+            ><span>Главная</span></a
+          ><a href="/about"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="7" r="4" />
+              <path d="M4 21v-2a8 8 0 0 1 16 0v2" /></svg
+            ><span>Обо мне</span></a
+          ><a href="/experience"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="7" width="18" height="14" rx="2" />
+              <path d="M8 7V3h8v4M3 12h18M10 12v3h4v-3" /></svg
+            ><span>Опыт</span></a
+          ><a href="/projects" aria-current="page"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18" /></svg
+            ><span>Проекты</span></a
+          ><a href="/faq"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M9 8a3 3 0 0 1 6 0c0 2-3 2-3 5m0 4h.01" /></svg
+            ><span>FAQ</span></a
+          ><a href="/pages"
+            ><svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path
+                d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"
+              /></svg
+            ><span>Все страницы</span></a
+          >
+          <a
+            class="text-link"
+            href="/graphql"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GraphQL API ↗</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <nav class="breadcrumbs container" aria-label="Хлебные крошки">
+      <ol>
+        <li><a href="/">Главная</a></li>
+        <li><span aria-current="page">Проекты</span></li>
+      </ol>
+    </nav>
+    <main id="main" class="container">
+      <section class="section">
+        <p class="eyebrow">Проекты</p>
+        <h1>От задачи к работающему приложению</h1>
+        <p class="lead">
+          Разработка коммерческих сайтов, которые используются для продвижения
+          компании в интернете и продажи продукции на рынке.
+        </p>
+        <section class="content-card" aria-labelledby="promotion-title">
+          <span class="badge commercial-proof"
+            >Реальные коммерческие проекты</span
+          >
+          <h2 id="promotion-title">
+            Разработка сайтов для продвижения и привлечения клиентов
+          </h2>
+          <p>
+            Разрабатывал и дорабатывал коммерческие сайты в сотрудничестве со
+            специалистами по веб-продвижению и SEO. Реализовывал технические
+            требования к структуре страниц, индексации и поисковой оптимизации.
+            Сайты использовались для продвижения продукции и привлечения лидов —
+            заявок и обращений потенциальных покупателей в компанию.
+          </p>
+          <p class="commercial-summary">
+            Множество коммерческих проектов для компаний ФактораГруп, Пневмотех,
+            Pnevmotex, Elektrodisel, Светорезерв и VIRITIA.
+          </p>
+          <div class="company-tags" aria-label="Компании коммерческих проектов">
+            <span>ФактораГруп</span><span>Пневмотех</span><span>Pnevmotex</span
+            ><span>Elektrodisel</span><span>Светорезерв</span
+            ><span>VIRITIA</span>
+          </div>
+        </section>
+        <article class="project-card" aria-labelledby="kompr-title">
+          <div class="project-card-head">
+            <span class="badge">Коммерческий проект</span><span>01</span>
+          </div>
+          <h2 id="kompr-title">kompr.ru — ПНЕВМОТЕХ</h2>
+          <p>
+            Интернет-магазин промышленного компрессорного оборудования: от
+            подбора по характеристикам до запроса коммерческого предложения.
+          </p>
+          <dl class="case-details">
+            <div>
+              <dt>Задача</dt>
+              <dd>
+                Представить большой ассортимент оборудования и помочь покупателю
+                подобрать товар или обратиться в отдел продаж.
+              </dd>
+            </div>
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Многоуровневый каталог, поиск и фильтры по цене, бренду,
+                давлению, мощности и производительности. Товарные карточки с
+                характеристиками, ценами и наличием.
+              </dd>
+            </div>
+            <div>
+              <dt>Возможности</dt>
+              <dd>
+                Корзина, сравнение, избранное, запрос коммерческого предложения,
+                заказ звонка, вход и регистрация. Разделы услуг, доставки,
+                акций, новостей, блога и FAQ.
+              </dd>
+            </div>
+            <div>
+              <dt>Результат</dt>
+              <dd>
+                Сайт объединяет продажу оборудования и сбор обращений для отдела
+                продаж.
+              </dd>
+            </div>
+          </dl>
+          <div class="tags">
+            <span>PHP</span><span>E-commerce</span><span>B2B</span>
+          </div>
+          <div class="hero-actions">
+            <a
+              class="button"
+              href="https://kompr.ru/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Открыть сайт ↗</a
+            >
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-card-head">
+            <span class="badge">Демонстрационный проект</span><span>02</span>
+          </div>
+          <h2>cvapp</h2>
+          <p>Портфолио разработчика с регистрацией и личным кабинетом.</p>
+          <dl class="case-details">
+            <div>
+              <dt>Задача</dt>
+              <dd>
+                Собрать профиль, опыт и проекты в одном приложении с публичным
+                API.
+              </dd>
+            </div>
+            <div>
+              <dt>Роль</dt>
+              <dd>Fullstack-разработка интерфейса и серверной части.</dd>
+            </div>
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Профиль, регистрация, сессионная аутентификация, GraphQL API,
+                русский и английский языки, три темы и Docker Compose.
+              </dd>
+            </div>
+            <div>
+              <dt>Результат</dt>
+              <dd>
+                Работающий демонстрационный сайт: публичные страницы, вход,
+                выход и защищённый личный кабинет.
+              </dd>
+            </div>
+          </dl>
+          <div class="tags">
+            <span>TypeScript</span><span>NestJS</span><span>GraphQL</span
+            ><span>Prisma</span><span>PostgreSQL</span><span>Docker</span
+            ><span>HTML / CSS / JavaScript</span>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="/">Открыть демо</a
+            ><a
+              class="button button-outline"
+              href="/graphql"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Исследовать API ↗</a
+            >
+          </div>
+        </article>
+        <article class="project-card" aria-labelledby="servis-title">
+          <div class="project-card-head">
+            <span class="badge">Демонстрационный проект</span><span>03</span>
+          </div>
+          <h2 id="servis-title">Сервис ЦФО</h2>
+          <p>
+            Демонстрационный PHP-лендинг сервиса по ремонту и обслуживанию
+            промышленного оборудования.
+          </p>
+          <dl class="case-details">
+            <div>
+              <dt>Задача</dt>
+              <dd>
+                Представить сервисные услуги и организовать приём обращений с
+                сайта.
+              </dd>
+            </div>
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Блоки услуг и контактов, формы с клиентской валидацией и
+                AJAX-отправкой, сохранение заявок в SQLite и email-уведомления.
+              </dd>
+            </div>
+            <div>
+              <dt>Интеграции</dt>
+              <dd>
+                Webhook WhatsApp-бота: ответы на команды, информация о компании
+                и отправка PDF-презентации. Подключена Яндекс Метрика.
+              </dd>
+            </div>
+            <div>
+              <dt>Архитектура</dt>
+              <dd>
+                Собственные маршрутизатор и контроллеры на PHP, шаблоны страниц
+                и автозагрузка классов через Composer PSR-4.
+              </dd>
+            </div>
+            <div>
+              <dt>Результат</dt>
+              <dd>
+                Демонстрация связки лендинга, обработки заявок, базы данных и
+                внешнего API. Исходный код опубликован на GitHub.
+              </dd>
+            </div>
+          </dl>
+          <p class="section-note">
+            Архивный демонстрационный проект 2019 года. Работа внешних
+            интеграций в текущем окружении не проверялась.
+          </p>
+          <div class="tags">
+            <span>PHP</span><span>SQLite</span><span>JavaScript</span
+            ><span>jQuery</span><span>Bootstrap</span><span>AJAX</span
+            ><span>Composer</span>
+          </div>
+          <div class="hero-actions">
+            <a
+              class="button"
+              href="https://github.com/megamouser/servis"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Посмотреть исходники ↗</a
+            >
+          </div>
+        </article>
+        <article class="project-card" aria-labelledby="pnevmotex-title">
+          <div class="project-card-head">
+            <span class="badge">Коммерческий проект</span><span>04</span>
+          </div>
+          <h2 id="pnevmotex-title">pnevmotex.com — ПневмоТех</h2>
+          <p>
+            Корпоративный интернет-магазин промышленного оборудования с
+            каталогом и информацией о сервисных услугах группы компаний.
+          </p>
+          <dl class="case-details">
+            <div>
+              <dt>Задача</dt>
+              <dd>
+                Объединить ассортимент оборудования, информацию о компании и
+                обращения покупателей в одном сайте.
+              </dd>
+            </div>
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Категории оборудования, товарный поиск, фильтры по
+                производителю, давлению, мощности и цене, сортировка и
+                постраничный просмотр каталога.
+              </dd>
+            </div>
+            <div>
+              <dt>Возможности</dt>
+              <dd>
+                Карточки товаров, корзина, страницы оформления заказа и
+                аккаунта, сравнение, запрос коммерческого предложения и
+                обратного звонка.
+              </dd>
+            </div>
+            <div>
+              <dt>Содержание</dt>
+              <dd>
+                Услуги, реализованные проекты компании, сертификаты, отзывы,
+                гарантии, оплата и доставка, блог, новости и контакты.
+              </dd>
+            </div>
+            <div>
+              <dt>Результат</dt>
+              <dd>
+                Единая площадка для знакомства с компанией, подбора
+                промышленного оборудования и обращения к специалистам.
+              </dd>
+            </div>
+          </dl>
+          <div class="tags">
+            <span>E-commerce</span><span>B2B</span
+            ><span>Каталог оборудования</span>
+          </div>
+          <div class="hero-actions">
+            <a
+              class="button"
+              href="https://pnevmotex.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Открыть сайт ↗</a
+            >
+          </div>
+        </article>
+        <article class="project-card" aria-labelledby="elektrodisel-title">
+          <div class="project-card-head">
+            <span class="badge">Коммерческий проект</span><span>05</span>
+          </div>
+          <h2 id="elektrodisel-title">elektrodisel.ru — Электродизель</h2>
+          <p>
+            Сайт-каталог энергетического оборудования: генераторы, компрессоры,
+            осветительные мачты и сопутствующие решения.
+          </p>
+          <dl class="case-details">
+            <div>
+              <dt>Задача</dt>
+              <dd>
+                Помочь покупателю выбрать оборудование по назначению, мощности и
+                бренду и отправить запрос специалистам.
+              </dd>
+            </div>
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Каталог с категориями генераторов, подбор по мощности и
+                производителям, товарные карточки, быстрый просмотр и корзина.
+              </dd>
+            </div>
+            <div>
+              <dt>Возможности</dt>
+              <dd>
+                Запрос консультации и коммерческого предложения, разделы оплаты
+                и доставки, сервиса и ремонта, проектов, блога и контактов.
+              </dd>
+            </div>
+            <div>
+              <dt>Результат</dt>
+              <dd>
+                Коммерческая площадка для подбора оборудования и обращения в
+                отдел продаж.
+              </dd>
+            </div>
+          </dl>
+          <div class="tags">
+            <span>E-commerce</span><span>B2B</span
+            ><span>Каталог оборудования</span>
+          </div>
+          <div class="hero-actions">
+            <a
+              class="button"
+              href="https://elektrodisel.ru/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Открыть сайт ↗</a
+            >
+          </div>
+        </article>
+        <article class="project-card" aria-labelledby="phpappstart-title">
+          <div class="project-card-head">
+            <span class="badge">Прототип</span><span>06</span>
+          </div>
+          <h2 id="phpappstart-title">phpAppStart</h2>
+          <p>
+            Стартовый каркас PHP-приложения с собственной маршрутизацией и
+            разделением контроллеров и представлений.
+          </p>
+          <dl class="case-details">
+            <div>
+              <dt>Задача</dt>
+              <dd>
+                Подготовить минимальную основу веб-приложения для экспериментов
+                с внешним API телефонии.
+              </dd>
+            </div>
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Единая точка входа, GET- и POST-маршруты, вызов методов
+                контроллера, HTML-шаблоны и вспомогательные методы для
+                редиректов, URI и JSON.
+              </dd>
+            </div>
+            <div>
+              <dt>Архитектура</dt>
+              <dd>
+                Собственный Router, PagesController и Helper. Автозагрузка
+                классов через Composer PSR-4, шаблон страницы на Bootstrap.
+              </dd>
+            </div>
+            <div>
+              <dt>Интеграции</dt>
+              <dd>
+                Подключена библиотека Zadarma API. В коде сохранены
+                закомментированные примеры получения статистики и записей
+                звонков; готовый интерфейс телефонии не реализован.
+              </dd>
+            </div>
+            <div>
+              <dt>Результат</dt>
+              <dd>
+                Демонстрационная основа для небольшого PHP-приложения.
+                POST-обработчик представлен заглушкой.
+              </dd>
+            </div>
+          </dl>
+          <div class="tags">
+            <span>PHP</span><span>Composer</span><span>PSR-4</span
+            ><span>Bootstrap 4</span><span>Zadarma API</span>
+          </div>
+          <div class="hero-actions">
+            <a
+              class="button"
+              href="https://github.com/megamouser/phpAppStart"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Посмотреть исходники ↗</a
+            >
+          </div>
+        </article>
+        <article class="project-card" aria-labelledby="whatsapp-title">
+          <div class="project-card-head">
+            <span class="badge">Работы для Пневмотех</span><span>07</span>
+          </div>
+          <h2 id="whatsapp-title">WhatsApp-бот для Пневмотех</h2>
+          <p>Автоматизация общения с клиентами через WhatsApp.</p>
+          <dl class="case-details">
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Обработка входящих сообщений, ответы на команды, информация о
+                компании и отправка презентации.
+              </dd>
+            </div>
+            <div>
+              <dt>Результат</dt>
+              <dd>Сценарии первичного общения с клиентом в мессенджере.</dd>
+            </div>
+          </dl>
+          <div class="tags"><span>WhatsApp</span><span>API</span></div>
+        </article>
+        <article class="project-card" aria-labelledby="email-title">
+          <div class="project-card-head">
+            <span class="badge">Работы для Пневмотех</span><span>08</span>
+          </div>
+          <h2 id="email-title">Интеграции email-маркетинга для Пневмотех</h2>
+          <p>Интеграции для поддержки email-маркетинга компании.</p>
+          <dl class="case-details">
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Подключение инструментов email-маркетинга к рабочим процессам
+                компании.
+              </dd>
+            </div>
+            <div>
+              <dt>Результат</dt>
+              <dd>Поддержка коммуникаций с клиентами по электронной почте.</dd>
+            </div>
+          </dl>
+          <div class="tags"><span>Email marketing</span><span>API</span></div>
+        </article>
+        <article class="project-card" aria-labelledby="calls-title">
+          <div class="project-card-head">
+            <span class="badge">Работы для Пневмотех</span><span>09</span>
+          </div>
+          <h2 id="calls-title">Аналитика звонков менеджеров Пневмотех</h2>
+          <p>Аналитика телефонных обращений и звонков менеджеров.</p>
+          <dl class="case-details">
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Получение и обработка данных о звонках для анализа работы отдела
+                продаж.
+              </dd>
+            </div>
+            <div>
+              <dt>Результат</dt>
+              <dd>
+                Информация о телефонных коммуникациях для оценки работы
+                менеджеров.
+              </dd>
+            </div>
+          </dl>
+          <div class="tags"><span>Call analytics</span><span>API</span></div>
+        </article>
+        <article class="project-card" aria-labelledby="telephony-title">
+          <div class="project-card-head">
+            <span class="badge">Работы для Пневмотех</span><span>10</span>
+          </div>
+          <h2 id="telephony-title">Интеграция IP-телефонии для Пневмотех</h2>
+          <p>Интеграция IP-телефонии с рабочими процессами компании.</p>
+          <dl class="case-details">
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Взаимодействие с системой IP-телефонии через программные
+                интерфейсы.
+              </dd>
+            </div>
+            <div>
+              <dt>Результат</dt>
+              <dd>
+                Связь телефонных коммуникаций с программными сервисами компании.
+              </dd>
+            </div>
+          </dl>
+          <div class="tags"><span>IP telephony</span><span>API</span></div>
+        </article>
+        <article class="project-card" aria-labelledby="sms-title">
+          <div class="project-card-head">
+            <span class="badge">Работы для Пневмотех</span><span>11</span>
+          </div>
+          <h2 id="sms-title">SMS-оповещения при покупке компрессоров</h2>
+          <p>SMS-уведомления покупателей компрессоров компании Пневмотех.</p>
+          <dl class="case-details">
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Интеграция отправки SMS с процессом покупки компрессорного
+                оборудования.
+              </dd>
+            </div>
+            <div>
+              <dt>Результат</dt>
+              <dd>Оповещение клиента по SMS в рамках покупки оборудования.</dd>
+            </div>
+          </dl>
+          <div class="tags">
+            <span>SMS</span><span>E-commerce</span><span>API</span>
+          </div>
+        </article>
+        <article class="project-card" aria-labelledby="advertising-crm-title">
+          <div class="project-card-head">
+            <span class="badge">Работы для Пневмотех</span><span>12</span>
+          </div>
+          <h2 id="advertising-crm-title">Внутренняя CRM для отдела рекламы</h2>
+          <p>
+            Разработка внутренней CRM для рабочих процессов рекламного отдела
+            компании Пневмотех.
+          </p>
+          <dl class="case-details">
+            <div>
+              <dt>Задача</dt>
+              <dd>
+                Организовать работу отдела рекламы в единой внутренней системе.
+              </dd>
+            </div>
+          </dl>
+          <div class="tags">
+            <span>CRM</span><span>Внутренняя система</span
+            ><span>Автоматизация процессов</span>
+          </div>
+        </article>
+        <article class="project-card" aria-labelledby="sales-crm-title">
+          <div class="project-card-head">
+            <span class="badge">Работы для Пневмотех</span><span>13</span>
+          </div>
+          <h2 id="sales-crm-title">Внутренняя CRM для отдела продаж</h2>
+          <p>
+            Разработка внутренней CRM для менеджеров по продажам компании
+            Пневмотех.
+          </p>
+          <dl class="case-details">
+            <div>
+              <dt>Задача</dt>
+              <dd>
+                Объединить рабочие процессы менеджеров по продажам во внутренней
+                системе.
+              </dd>
+            </div>
+          </dl>
+          <div class="tags">
+            <span>CRM</span><span>Внутренняя система</span
+            ><span>Автоматизация процессов</span>
+          </div>
+        </article>
+        <article class="project-card" aria-labelledby="redmine-title">
+          <div class="project-card-head">
+            <span class="badge">VIRITIA</span><span>14</span>
+          </div>
+          <h2 id="redmine-title">Деплой и администрирование Redmine</h2>
+          <p>
+            Развёртывание и администрирование системы управления проектами и
+            задачами Redmine.
+          </p>
+          <dl class="case-details">
+            <div>
+              <dt>Задача</dt>
+              <dd>
+                Обеспечить работу Redmine для организации проектов и задач
+                команды.
+              </dd>
+            </div>
+            <div>
+              <dt>Реализация</dt>
+              <dd>Деплой Redmine и последующее администрирование системы.</dd>
+            </div>
+          </dl>
+          <div class="tags">
+            <span>Redmine</span><span>Deployment</span
+            ><span>Администрирование</span>
+          </div>
+        </article>
+        <article
+          class="project-card"
+          aria-labelledby="viritia-microservices-title"
+        >
+          <div class="project-card-head">
+            <span class="badge">VIRITIA</span><span>15</span>
+          </div>
+          <h2 id="viritia-microservices-title">
+            Распределённая микросервисная архитектура
+          </h2>
+          <p>
+            Реализация распределённой микросервисной архитектуры на Python с
+            использованием FastAPI и Django для компании VIRITIA.
+          </p>
+          <dl class="case-details">
+            <div>
+              <dt>Задача</dt>
+              <dd>
+                Организовать приложение как систему взаимодействующих
+                микросервисов с документированными API.
+              </dd>
+            </div>
+            <div>
+              <dt>Реализация</dt>
+              <dd>
+                Микросервисы на Python, FastAPI и Django, API и интерактивная
+                документация Swagger.
+              </dd>
+            </div>
+          </dl>
+          <div class="tags">
+            <span>Python</span><span>FastAPI</span><span>Django</span
+            ><span>Microservices</span><span>Swagger / OpenAPI</span>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="footer container">
+      <a class="brand footer-brand" href="/"
+        >cvapp<span class="brand-dot">.</span></a
+      >
+      <p>Продумано. Разработано. Запущено.</p>
+      <a
+        class="text-link"
+        href="/graphql"
+        target="_blank"
+        rel="noopener noreferrer"
+        >GraphQL API ↗</a
+      >
+      <a class="text-link" href="/pages">Все страницы</a>
+    </footer>
+  </body>
+</html>
